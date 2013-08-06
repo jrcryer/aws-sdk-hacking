@@ -50,23 +50,37 @@ dynamo.init(AWS);
 // });
 
 
-// dynamo.item.put("nodekeys", {
-// 	isbn: {"N": "0193206"},
-// 	author: {"S": "Timto 2"},
-// 	title: {"S": "Timto International 2"}
-// }, function(err, data) {
+// dynamo.table.describe("nodekeys", function(err, data) {
 
 // 	if (err) console.log(err);
 
 // 	console.log(data);
 // });
+// dynamo.item.put("nodekeys", {
+// 	isbn: {"N": "0193211"},
+// 	author: {"S": "Timto 4"},
+// 	title: {"S": "Timto International 4"}
+// }, function(err, data) {
+
+// 	if (err) console.log(err);
+
+// 	console.log(data);
+
+
+		// dynamo.scan("nodekeys", function(err, data) {
+
+		// 	if (err) console.log(err);
+
+		// 	console.log(data);
+		// });
+// });
 
 // dynamo.item.remove("nodekeys", {
 // 	isbn: {
-// 		"N": "193206"
+// 		"N": "193207"
 // 	},
 // 	author: {
-// 		"S": "Timto 2"
+// 		"S": "Timto 4"
 // 	}
 // }, function(err, data) {
 
@@ -75,19 +89,19 @@ dynamo.init(AWS);
 // 	console.log(data);
 // });
 
-dynamo.table.list(function(err, data) {
-	if (err) console.log(err);
+// dynamo.table.list(function(err, data) {
+// 	if (err) console.log(err);
 
-	console.log(data.TableNames);
-});
+// 	console.log(data.TableNames);
+// });
 
-dynamo.table.remove("nodekeys", function(err, data) {
-	if (err) console.log(err);
+// dynamo.table.remove("nodekeys", function(err, data) {
+// 	if (err) console.log(err);
 
-	console.log(data);
-});
-dynamo.table.remove("nits", function(err, data) {
-	if (err) console.log(err);
+// 	console.log(data);
+// });
+// dynamo.table.remove("nits", function(err, data) {
+// 	if (err) console.log(err);
 
-	console.log(data);
-});
+// 	console.log(data);
+// });
