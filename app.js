@@ -2,16 +2,7 @@ var AWS    = require('aws-sdk');
 var tunnel = require('tunnel');
 AWS.config.loadFromPath('./config.json');
 
-// AWS.config.update({
-// 	httpOptions: {
-// 		agent: tunnel.httpsOverHttp({
-// 			proxy: {
-// 			    host: 'www-cache.reith.bbc.co.uk',
-// 		        port: 80
-// 			}
-// 		})
-// 	}
-// });
+
 
 var sqs = require('./lib/sqs');
 sqs.init(AWS);
