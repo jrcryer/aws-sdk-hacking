@@ -1,0 +1,13 @@
+{
+  "name": "aws-ex2",
+  "version": "0.1.0",
+  "description": "AWS training course",
+  "main": "app.js",
+  "scripts": {
+    "run": "node app.js"
+  },
+  "devDependencies": {
+    "aws-sdk": "1.4.1",
+    "tunnel": "0.0.2"
+  }
+}
