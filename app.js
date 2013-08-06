@@ -2,6 +2,56 @@ var AWS    = require('aws-sdk');
 var tunnel = require('tunnel');
 AWS.config.loadFromPath('./config.json');
 
+// AWS.config.update({
+// 	httpOptions: {
+// 		agent: tunnel.httpsOverHttp({
+// 			proxy: {
+// 			    host: 'www-cache.reith.bbc.co.uk',
+// 		        port: 80
+// 			}
+// 		})
+// 	}
+// });
+
+var sqs = require('./lib/sqs');
+sqs.init(AWS);
+
+var sdb = require('./lib/simpledb');
+sdb.init(AWS);
+
+// sqs.queue.create("nodesdk", function(err, data) {
+
+// 	if (err) return console.log(err);
+
+// 	var url = data.QueueUrl;
+
+// 	console.log("Queue URL:" + url);
+
+// 	sdb.attribute.put("SQSQueues", "jbiuser3", [{
+// 		Name: "queueUrl",
+// 		Value: url
+// 	}], function(err, data) {
+
+// 		if (err) return console.log(err);
+
+// 		console.log(data);
+// 	});
+// });
+
+sdb.attribute.get("SQSQueues", "jbiuser2", function(err, data) {
+
+	if (err) return console.log(err);
+
+	var url = data.Attributes[0].Value;
+	console.log(url);
+
+	sqs.message.create(url, "Hello Node!", function(err, data) {
+
+		if (err) return console.log(err);
+
+		console.log(data);
+	});
+});
 
 
 //var s3     = require('./lib/s3');
@@ -25,8 +75,8 @@ AWS.config.loadFromPath('./config.json');
 // sdb.domain.create(domain, putAttributes);
 // sdb.search("select * from nodesdk where name = \"node-bot-the-fourth\"");
 
-var dynamo = require('./lib/dynamodb');
-dynamo.init(AWS);
+// var dynamo = require('./lib/dynamodb');
+// dynamo.init(AWS);
 
 // dynamo.table.create("nodekeys", [
 // 	{
@@ -105,3 +155,18 @@ dynamo.init(AWS);
 
 // 	console.log(data);
 // });
+
+
+// dynamo.query('nodekeys',
+// 	{
+// 		'isbn': {
+// 			AttributeValueList: [{'N': '193206'}],
+// 			ComparisonOperator: 'EQ',
+// 		}
+// 	},
+// 	function(err, callback) {
+// 		if (err) console.log(err);
+
+// 		console.log(data);
+// });
+
